@@ -29,14 +29,14 @@ class ProductRepositoryTest {
 
     @Test
     public void shouldFindByID() {
-        Product[] expected = new Product[]{secondBook};
-        Product[] actual = repository.findByID(2);
-        assertArrayEquals(expected, actual);
+        Product expected = secondBook;
+        Product actual = repository.findByID(2);
+        assertEquals(expected, actual);
     }
 
     @Test
     public void shouldNotFindByNonexistentID() {
-        assertThrows(NotFoundException.class, () -> repository.findByID(nonexistentID));
+        assertNull(repository.findByID(nonexistentID));
     }
 
     @Test
@@ -49,7 +49,7 @@ class ProductRepositoryTest {
 
     @Test
     public void shouldNotRemoveByNonexistentID() {
-        repository.removeByID(nonexistentID);
+        assertThrows(NotFoundException.class, () -> repository.removeByID(nonexistentID));
         Product[] expected = new Product[]{firstBook, secondBook};
         Product[] actual = repository.findAll();
         assertArrayEquals(expected, actual);
