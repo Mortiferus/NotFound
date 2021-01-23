@@ -11,6 +11,6 @@ class NotFoundExceptionTest {
 
     @Test
     public void shouldCatchException() {
-        assertThrows(NotFoundException.class, () -> repository.findByID(nonexistentID));
+        assertThrows(NotFoundException.class, () -> repository.removeByID(nonexistentID));
     }
 }
